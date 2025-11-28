@@ -130,11 +130,11 @@ jobs:
         working-directory: /tmp/digests
         run: |
           docker buildx imagetools create $(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON") \
-            $(printf 'ghcr.io/${{ steps.lowercase.outputs.owner }}/Sun@sha256:%s ' *)
+            $(printf 'ghcr.io/${{ steps.lowercase.outputs.owner }}/sun@sha256:%s ' *)
 
       - name: Inspect image
         run: |
-          docker buildx imagetools inspect ghcr.io/${{ steps.lowercase.outputs.owner }}/moontv:${{ steps.meta.outputs.version }}
+          docker buildx imagetools inspect ghcr.io/${{ steps.lowercase.outputs.owner }}/sun:${{ steps.meta.outputs.version }}
 
   cleanup:
     runs-on: ubuntu-latest
