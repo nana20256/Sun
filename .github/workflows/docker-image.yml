@@ -130,7 +130,7 @@ jobs:
         working-directory: /tmp/digests
         run: |
           docker buildx imagetools create $(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON") \
-            $(printf 'ghcr.io/${{ steps.lowercase.outputs.owner }}/sun)
+            $(printf 'ghcr.io/${{ steps.lowercase.outputs.owner }}/sun@sha256:%s ' *)
 
       - name: Inspect image
         run: |
